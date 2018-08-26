@@ -53,3 +53,70 @@ fn();
  * +++++++      +++++++       +++++++
  * 
  **********************************************/
+
+//  node导包
+
+ var stuff =  require('./count');
+
+ var pi = require('./count').pi;
+
+ console.log(stuff.counter(['ruby','node.js','react']));
+ console.log(stuff.adder(3,2));
+ console.log(pi);
+
+
+ //node.js事件
+//  Element.on('click',function(){
+//      console.log('clicked');
+//  })
+
+ var events = require('events');
+ var util = require('util');
+
+ var Person = function(name){
+     this.name = name
+ }
+
+ util.inherits(Person,events.EventEmitter);
+ var xiaoming = new Person('xiaoming');
+ var lili = new Person('lili');
+ var lucy = new Person('lucy');
+
+ var person = [xiaoming,lili,lucy];
+ 
+ person.forEach(function(person) {
+    person.on('speak',function(message) {
+        console.log(person.name + " said: " + message);
+    })
+ })
+xiaoming.emit('speak','hi');
+lucy.emit('speak','I want a curry');
+
+ var myEmitter = new events.EventEmitter();
+
+ myEmitter.on('someEvent',function(message){
+    console.log(message);
+ })
+
+ myEmitter.emit('someEvent','the event was emitted');
+
+
+
+ //文件学习
+ var fs = require('fs');
+
+ //Sync 同步，readFile 异步
+var readMe = fs.readFile("readMe.txt","utf8",function(err,data){
+    fs.writeFile("writeMe.txt",data,function(){
+        console.log('writeMe has finished');
+    });
+});
+
+var waitTill = new Date(new Date90.getTime() + 4 * 1000);
+while(waitTill > new Date()){
+
+}
+
+console.log(readMe);
+
+console.log("finished");
